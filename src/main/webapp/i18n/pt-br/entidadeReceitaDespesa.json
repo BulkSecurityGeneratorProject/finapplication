@@ -1,0 +1,22 @@
+{
+    "finapplicationApp": {
+        "entidadeReceitaDespesa" : {
+            "home": {
+                "title": "Entidade Receita Despesas",
+                "createLabel": "Criar novo Entidade Receita Despesa",
+                "createOrEditLabel": "Criar ou editar Entidade Receita Despesa"
+            },
+            "created": "Um novo Entidade Receita Despesa foi criado com o identificador {{ param }}",
+            "updated": "Um Entidade Receita Despesa foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Entidade Receita Despesa foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Entidade Receita Despesa {{ id }}?"
+            },
+            "detail": {
+                "title": "Entidade Receita Despesa"
+            },
+            "descricao": "Descricao",
+            "user": "User"
+        }
+    }
+}

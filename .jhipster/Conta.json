@@ -1,0 +1,43 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "tipoConta",
+            "otherEntityName": "tipoConta",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "conta"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "descricao",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "saldoInicial",
+            "javadoc": "descricao da conta",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20171012220635",
+    "javadoc": "Conta: Ex: Carteira, Conta itau, Conta Bradesco\n@author DigiDev Team",
+    "entityTableName": "conta",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "angularJSSuffix": "finapp"
+}

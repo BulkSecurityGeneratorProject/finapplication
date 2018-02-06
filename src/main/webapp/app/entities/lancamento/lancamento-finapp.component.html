@@ -1,0 +1,88 @@
+<div>
+    <h2>
+        <span jhiTranslate="finapplicationApp.lancamento.home.title">Lancamentos</span>
+        <button class="btn btn-primary float-right jh-create-entity create-lancamento-finapp" [routerLink]="['/', { outlets: { popup: ['lancamento-finapp-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="finapplicationApp.lancamento.home.createLabel">
+            Create new Lancamento
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="lancamentos">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="tipo"><span jhiTranslate="finapplicationApp.lancamento.tipo">Tipo</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="data"><span jhiTranslate="finapplicationApp.lancamento.data">Data</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="descricao"><span jhiTranslate="finapplicationApp.lancamento.descricao">Descricao</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="valor"><span jhiTranslate="finapplicationApp.lancamento.valor">Valor</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="pagoRecebido"><span jhiTranslate="finapplicationApp.lancamento.pagoRecebido">Pago Recebido</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="lancamentoId"><span jhiTranslate="finapplicationApp.lancamento.lancamento">Lancamento</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="contaId"><span jhiTranslate="finapplicationApp.lancamento.conta">Conta</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="entidadeId"><span jhiTranslate="finapplicationApp.lancamento.entidade">Entidade</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="categoriaId"><span jhiTranslate="finapplicationApp.lancamento.categoria">Categoria</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let lancamento of lancamentos ;trackBy: trackId">
+                <td><a [routerLink]="['../lancamento-finapp', lancamento.id ]">{{lancamento.id}}</a></td>
+                <td jhiTranslate="{{'finapplicationApp.Tipo.' + lancamento.tipo}}">{{lancamento.tipo}}</td>
+                <td>{{lancamento.data | date:'mediumDate'}}</td>
+                <td>{{lancamento.descricao}}</td>
+                <td>{{lancamento.valor}}</td>
+                <td>{{lancamento.pagoRecebido}}</td>
+                <td>
+                    <div *ngIf="lancamento.lancamentoId">
+                        <a [routerLink]="['../lancamento-finapp', lancamento.lancamentoId  ]" >{{lancamento.lancamentoId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="lancamento.contaId">
+                        <a [routerLink]="['../conta-finapp', lancamento.contaId  ]" >{{lancamento.contaId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="lancamento.entidadeId">
+                        <a [routerLink]="['../entidade-receita-despesa-finapp', lancamento.entidadeId  ]" >{{lancamento.entidadeId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="lancamento.categoriaId">
+                        <a [routerLink]="['../categoria-finapp', lancamento.categoriaId  ]" >{{lancamento.categoriaId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../lancamento-finapp', lancamento.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'lancamento-finapp/'+ lancamento.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'lancamento-finapp/'+ lancamento.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

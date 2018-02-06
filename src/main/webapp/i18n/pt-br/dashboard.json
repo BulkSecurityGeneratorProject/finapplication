@@ -1,0 +1,13 @@
+{
+    "dashboard": {
+        "title": "Dashboard!",
+        "grupo": {
+            "categoria": "Despesas por Categoria",
+            "tipo": "Despesas X Receitas"
+        },
+        "tabs": {
+            "receitas": "Receitas",
+            "despesas": "Despesas"
+        }
+    }
+}

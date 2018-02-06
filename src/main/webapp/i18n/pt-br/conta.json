@@ -1,0 +1,24 @@
+{
+    "finapplicationApp": {
+        "conta" : {
+            "home": {
+                "title": "Contas",
+                "createLabel": "Criar novo Conta",
+                "createOrEditLabel": "Criar ou editar Conta"
+            },
+            "created": "Um novo Conta foi criado com o identificador {{ param }}",
+            "updated": "Um Conta foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Conta foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Conta {{ id }}?"
+            },
+            "detail": {
+                "title": "Conta"
+            },
+            "descricao": "Descricao",
+            "saldoInicial": "Saldo Inicial",
+            "tipoConta": "Tipo Conta",
+            "user": "User"
+        }
+    }
+}

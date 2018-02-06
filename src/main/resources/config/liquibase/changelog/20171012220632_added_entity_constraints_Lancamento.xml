@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Lancamento.
+    -->
+    <changeSet id="20171012220632-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="lancamento_id"
+                                 baseTableName="lancamento"
+                                 constraintName="fk_lancamento_lancamento_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="lancamento"/>
+
+        <addForeignKeyConstraint baseColumnNames="conta_id"
+                                 baseTableName="lancamento"
+                                 constraintName="fk_lancamento_conta_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="conta"/>
+
+        <addForeignKeyConstraint baseColumnNames="entidade_id"
+                                 baseTableName="lancamento"
+                                 constraintName="fk_lancamento_entidade_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="entidade_receita_despesa"/>
+
+        <addForeignKeyConstraint baseColumnNames="categoria_id"
+                                 baseTableName="lancamento"
+                                 constraintName="fk_lancamento_categoria_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="categoria"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="lancamento"
+                                 constraintName="fk_lancamento_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+    </changeSet>
+</databaseChangeLog>

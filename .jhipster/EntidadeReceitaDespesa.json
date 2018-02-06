@@ -1,0 +1,28 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "descricao",
+            "javadoc": "Responsavel a receber ou pagar",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20171012220633",
+    "javadoc": "Entidade a pagar ou receber o lancamento\n@author DigiDev Team",
+    "entityTableName": "entidade_receita_despesa",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "angularJSSuffix": "finapp"
+}

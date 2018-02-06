@@ -1,0 +1,22 @@
+{
+    "finapplicationApp": {
+        "tipoConta" : {
+            "home": {
+                "title": "Tipo Contas",
+                "createLabel": "Criar novo Tipo Conta",
+                "createOrEditLabel": "Criar ou editar Tipo Conta"
+            },
+            "created": "Um novo Tipo Conta foi criado com o identificador {{ param }}",
+            "updated": "Um Tipo Conta foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Tipo Conta foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Tipo Conta {{ id }}?"
+            },
+            "detail": {
+                "title": "Tipo Conta"
+            },
+            "descricao": "Descricao",
+            "user": "User"
+        }
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "descricao",
+            "javadoc": "Descricao do tipo conta",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20171012220631",
+    "javadoc": "Tipo de Conta cadastra ex: Carteira pessoal, Conta Poupanca etc.\n@author DigiDev Team",
+    "entityTableName": "tipo_conta",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "angularJSSuffix": "finapp"
+}

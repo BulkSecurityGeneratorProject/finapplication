@@ -1,0 +1,65 @@
+
+<div *ngIf="lancamento">
+    <h2><span jhiTranslate="finapplicationApp.lancamento.detail.title">Lancamento</span> {{lancamento.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="finapplicationApp.lancamento.tipo">Tipo</span></dt>
+        <dd>
+            <span jhiTranslate="{{'finapplicationApp.Tipo.' + lancamento.tipo}}">{{lancamento.tipo}}</span>
+        </dd>
+        <dt><span jhiTranslate="finapplicationApp.lancamento.data">Data</span></dt>
+        <dd>
+            <span>{{lancamento.data | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="finapplicationApp.lancamento.descricao">Descricao</span></dt>
+        <dd>
+            <span>{{lancamento.descricao}}</span>
+        </dd>
+        <dt><span jhiTranslate="finapplicationApp.lancamento.valor">Valor</span></dt>
+        <dd>
+            <span>{{lancamento.valor}}</span>
+        </dd>
+        <dt><span jhiTranslate="finapplicationApp.lancamento.pagoRecebido">Pago Recebido</span></dt>
+        <dd>
+            <span>{{lancamento.pagoRecebido}}</span>
+        </dd>
+        <dt><span jhiTranslate="finapplicationApp.lancamento.lancamento">Lancamento</span></dt>
+        <dd>
+            <div *ngIf="lancamento.lancamentoId">
+                <a [routerLink]="['/lancamento-finapp', lancamento.lancamentoId]">{{lancamento.lancamentoId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="finapplicationApp.lancamento.conta">Conta</span></dt>
+        <dd>
+            <div *ngIf="lancamento.contaId">
+                <a [routerLink]="['/conta-finapp', lancamento.contaId]">{{lancamento.contaId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="finapplicationApp.lancamento.entidade">Entidade</span></dt>
+        <dd>
+            <div *ngIf="lancamento.entidadeId">
+                <a [routerLink]="['/entidade-receita-despesa-finapp', lancamento.entidadeId]">{{lancamento.entidadeId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="finapplicationApp.lancamento.categoria">Categoria</span></dt>
+        <dd>
+            <div *ngIf="lancamento.categoriaId">
+                <a [routerLink]="['/categoria-finapp', lancamento.categoriaId]">{{lancamento.categoriaId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'lancamento-finapp/'+ lancamento.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

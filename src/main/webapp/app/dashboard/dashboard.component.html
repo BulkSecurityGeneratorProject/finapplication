@@ -1,0 +1,143 @@
+<div class="row" style="text-align: center">
+    <div class="col-md-12">
+        <div class="btn-group" ngbRadioGroup name="radioBasic" *ngFor="let data of datasExibirList">
+            <label *ngIf="!data.checked" ngbButtonLabel class="btn-primary">
+                <input ngbButton type="radio" (click)="changeDate(data)" [value]="data.data"> {{data.data | date: 'MMM y'}}
+            </label>
+            <label *ngIf="data.checked" ngbButtonLabel class="btn-success">
+                <input ngbButton type="radio" (click)="changeDate(data)" [value]="data.data"> {{data.data | date: 'MMM y'}}
+            </label>
+        </div>
+    </div>
+</div>
+<div class="row" style="margin-top: 10px;">
+    <div *ngIf="listaContas" class="text-left col-md-12">
+        <ngx-charts-number-card
+            [scheme]="color"
+            [valueFormatting]="formataTooltip"
+            [cardColor]="colorBackground"
+            [results]="listaContas"
+            [labelFormatting]="labelFormatting">
+        </ngx-charts-number-card>
+    </div>
+</div>
+<div class="row" style="margin-top: 10px;">
+    <div class="col-md-12">
+        <ngb-tabset>
+            <ngb-tab>
+                <ng-template ngbTabTitle><span jhiTranslate="dashboard.tabs.receitas">Receitas</span></ng-template>
+                <ng-template ngbTabContent>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th><span jhiTranslate="finapplicationApp.lancamento.tipo">Tipo</span> </th>
+                            <th><span jhiTranslate="finapplicationApp.lancamento.data">Data</span> </th>
+                            <th><span jhiTranslate="finapplicationApp.lancamento.descricao">Descricao</span> </th>
+                            <th><span jhiTranslate="finapplicationApp.lancamento.conta">Conta</span> </th>
+                            <th><span jhiTranslate="finapplicationApp.lancamento.categoria">Categoria</span></th>
+                            <th><span jhiTranslate="finapplicationApp.lancamento.entidade">Entidade</span></th>
+                            <th><span jhiTranslate="finapplicationApp.lancamento.valor">Valor</span> </th>
+                            <th class="text-right">Pago</th>
+                        </tr>
+                        </thead>
+                        <tr *ngFor="let lancamento of lancamentosReceitas ;trackBy: trackId">
+                            <td jhiTranslate="{{'finapplicationApp.Tipo.' + lancamento.tipo}}">{{lancamento.tipo}}</td>
+                            <td>{{lancamento.data | date:'mediumDate'}}</td>
+                            <td>{{lancamento.descricao}}</td>
+                            <td>
+                                {{lancamento.contaDescricao}}
+
+                            </td>
+                            <td>
+                                {{lancamento.categoriaDescricao}}
+                            </td>
+                            <td>
+                                {{lancamento.entidadeDescricao}}
+                            </td>
+                            <td>{{lancamento.valor | currency:'BRL':true}}</td>
+                            <td class="text-right">
+                                <div class="btn-group flex-btn-group-container">
+                                    <switch  onText="Sim"
+                                             offText="Não"
+                                             offColor="red"
+                                             onColor="green"
+                                             [status]="lancamento.pagoRecebido"
+                                             (statusChange)="marcaPagamento($event, lancamento)"></switch>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab>
+                <ng-template ngbTabTitle><span jhiTranslate="dashboard.tabs.despesas">Despesas</span></ng-template>
+                <ng-template ngbTabContent>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th><span jhiTranslate="finapplicationApp.lancamento.tipo">Tipo</span> </th>
+                            <th><span jhiTranslate="finapplicationApp.lancamento.data">Data</span> </th>
+                            <th><span jhiTranslate="finapplicationApp.lancamento.descricao">Descricao</span> </th>
+                            <th><span jhiTranslate="finapplicationApp.lancamento.conta">Conta</span> </th>
+                            <th><span jhiTranslate="finapplicationApp.lancamento.categoria">Categoria</span></th>
+                            <th><span jhiTranslate="finapplicationApp.lancamento.entidade">Entidade</span></th>
+                            <th><span jhiTranslate="finapplicationApp.lancamento.valor">Valor</span> </th>
+                            <th class="text-right">Pago</th>
+                        </tr>
+                        </thead>
+                        <tr *ngFor="let lancamento of lancamentosDespesas ;trackBy: trackId">
+                            <td jhiTranslate="{{'finapplicationApp.Tipo.' + lancamento.tipo}}">{{lancamento.tipo}}</td>
+                            <td>{{lancamento.data | date:'mediumDate'}}</td>
+                            <td>{{lancamento.descricao}}</td>
+                            <td>
+                                {{lancamento.contaDescricao}}
+
+                            </td>
+                            <td>
+                                {{lancamento.categoriaDescricao}}
+                            </td>
+                            <td>
+                                {{lancamento.entidadeDescricao}}
+                            </td>
+                            <td>{{lancamento.valor | currency:'BRL':true}}</td>
+                            <td class="text-right">
+                                <div class="btn-group flex-btn-group-container">
+                                    <switch  onText="Sim"
+                                             offText="Não"
+                                             offColor="red"
+                                             onColor="green"
+                                             [status]="lancamento.pagoRecebido"
+                                             (statusChange)="marcaPagamento($event, lancamento)"></switch>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </ng-template>
+            </ngb-tab>
+        </ngb-tabset>
+    </div>
+</div>
+<div class="row" style="margin-top: 10px;">
+    <div *ngIf="listaDespesasAgrupadaCategoria" class="text-center col-md-6">
+        <p class="display-4" jhiTranslate="dashboard.grupo.categoria" style="font-size: 30px;">Despesas</p>
+        <ngx-charts-pie-chart
+            [results]="listaDespesasAgrupadaCategoria"
+            [view]="view"
+            [legend]="true"
+            [tooltipText]="formataTooltip"
+            [scheme]="color"
+            [legendTitle]="legendTitle"
+        >
+        </ngx-charts-pie-chart>
+    </div>
+    <div *ngIf="listaSomaResultadoMesAgrupaTipo" class="text-center col-md-6">
+        <p class="display-4" jhiTranslate="dashboard.grupo.tipo" style="font-size: 30px;">Despesas</p>
+        <ngx-charts-pie-grid
+            [results]="listaSomaResultadoMesAgrupaTipo"
+            [view]="view"
+            [scheme]="color"
+        >
+        </ngx-charts-pie-grid>
+    </div>
+</div>

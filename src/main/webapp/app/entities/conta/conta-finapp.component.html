@@ -1,0 +1,72 @@
+<div>
+    <h2>
+        <span jhiTranslate="finapplicationApp.conta.home.title">Contas</span>
+        <button class="btn btn-primary float-right jh-create-entity create-conta-finapp" [routerLink]="['/', { outlets: { popup: ['conta-finapp-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="finapplicationApp.conta.home.createLabel">
+            Create new Conta
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="contas">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="descricao"><span jhiTranslate="finapplicationApp.conta.descricao">Descricao</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="saldoInicial"><span jhiTranslate="finapplicationApp.conta.saldoInicial">Saldo Inicial</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="tipoContaId"><span jhiTranslate="finapplicationApp.conta.tipoConta">Tipo Conta</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let conta of contas ;trackBy: trackId">
+                <td><a [routerLink]="['../conta-finapp', conta.id ]">{{conta.id}}</a></td>
+                <td>{{conta.descricao}}</td>
+                <td>{{conta.saldoInicial}}</td>
+                <td>
+                    <div *ngIf="conta.tipoContaId">
+                        <a [routerLink]="['../tipo-conta-finapp', conta.tipoContaId  ]" >{{conta.tipoContaId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../conta-finapp', conta.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'conta-finapp/'+ conta.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'conta-finapp/'+ conta.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="contas && contas.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

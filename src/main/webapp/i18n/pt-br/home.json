@@ -1,0 +1,9 @@
+{
+    "home": {
+        "title": "Bem vindo ao Fin App!",
+        "subtitle": "Organize suas finanças pessoais.",
+        "logged": {
+            "message": "Você está logado como \"{{username}}\"."
+        }
+    }
+}

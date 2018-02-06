@@ -1,0 +1,92 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "lancamento",
+            "otherEntityName": "lancamento",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "lancamentoPai",
+            "otherEntityName": "lancamento",
+            "otherEntityRelationshipName": "lancamento"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "conta",
+            "otherEntityName": "conta",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "entidade",
+            "otherEntityName": "entidadeReceitaDespesa",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "categoria",
+            "otherEntityName": "categoria",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "tipo",
+            "fieldType": "Tipo",
+            "fieldValues": "RECEITA,DESPESA",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "data",
+            "javadoc": "Tipo do lancamento",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "descricao",
+            "javadoc": "Data do vencimento ou pagamento",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "valor",
+            "javadoc": "Descricao do lancamento",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "pagoRecebido",
+            "javadoc": "Indica o sucesso do pagamento ou recebimento",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "parcela",
+            "javadoc": "Indica o número da parcela",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20171012220632",
+    "javadoc": "Lancamento da despesa ou receita\n@author DigiDev Team",
+    "entityTableName": "lancamento",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceClass",
+    "angularJSSuffix": "finapp"
+}

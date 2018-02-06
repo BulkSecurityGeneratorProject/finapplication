@@ -1,0 +1,31 @@
+{
+    "finapplicationApp": {
+        "lancamento" : {
+            "home": {
+                "title": "Lancamentos",
+                "createLabel": "Create a new Lancamento",
+                "createOrEditLabel": "Create or edit a Lancamento"
+            },
+            "created": "A new Lancamento is created with identifier {{ param }}",
+            "updated": "A Lancamento is updated with identifier {{ param }}",
+            "deleted": "A Lancamento is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Lancamento {{ id }}?"
+            },
+            "detail": {
+                "title": "Lancamento"
+            },
+            "tipo": "Tipo",
+            "data": "Data",
+            "descricao": "Descricao",
+            "valor": "Valor",
+            "pagoRecebido": "Pago Recebido",
+            "lancamento": "Lancamento",
+            "lancamentoPai": "Lancamento Pai",
+            "conta": "Conta",
+            "entidade": "Entidade",
+            "categoria": "Categoria",
+            "user": "User"
+        }
+    }
+}

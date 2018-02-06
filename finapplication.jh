@@ -1,0 +1,78 @@
+/**
+ * Enum para Tipo de lancamento
+ * @author DigiDev Team
+ */
+enum Tipo {
+	RECEITA, DESPESA
+}
+
+/**
+ * Tipo de Conta cadastra ex: Carteira pessoal, Conta Poupanca etc.
+ * @author DigiDev Team
+ */
+entity TipoConta {
+	descricao String required /** Descricao do tipo conta */
+}
+
+/**
+ * Lancamento da despesa ou receita
+ * @author DigiDev Team
+ */
+entity Lancamento {
+	tipo Tipo required, /** Tipo do lancamento */
+    data LocalDate required, /** Data do vencimento ou pagamento */
+    descricao String required, /** Descricao do lancamento */
+    valor BigDecimal required /** valor do lancamento */
+    pagoRecebido Boolean /** Indica o sucesso do pagamento ou recebimento */
+}
+
+/**
+ * Entidade a pagar ou receber o lancamento
+ * @author DigiDev Team
+ */
+entity EntidadeReceitaDespesa {
+	descricao String required /** Responsavel a receber ou pagar */
+}
+
+/**
+ * Categoria do lancamento
+ * @author DigiDev Team
+ */
+entity Categoria {
+	descricao String required /** Descricao da categoria */
+}
+
+/**
+ * Conta: Ex: Carteira, Conta itau, Conta Bradesco
+ * @author DigiDev Team
+ */
+entity Conta {
+	descricao String required, /** descricao da conta */
+    saldoInicial BigDecimal required /** Saldo inicial da conta */
+}
+
+
+relationship OneToOne {
+	Conta{tipoConta} to TipoConta
+}
+
+relationship OneToMany {
+	Lancamento{lancamentoPai} to Lancamento
+}
+
+relationship ManyToOne {
+    Lancamento{conta} to Conta,
+    Lancamento{entidade} to EntidadeReceitaDespesa,
+    Lancamento{categoria} to Categoria,
+    Lancamento{user} to User,
+    Categoria{user} to User,
+    Conta{user} to User,
+    TipoConta{user} to User,
+    EntidadeReceitaDespesa{user} to User
+}
+
+dto * with mapstruct
+service all with serviceClass
+angularSuffix * with finapp
+paginate Lancamento with infinite-scroll
+paginate TipoConta, EntidadeReceitaDespesa, Categoria, Conta with pagination

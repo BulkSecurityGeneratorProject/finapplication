@@ -1,0 +1,9 @@
+{
+    "finapplicationApp": {
+        "Tipo" : {
+            "null": "",
+            "RECEITA": "RECEITA",
+            "DESPESA": "DESPESA"
+        }
+    }
+}
